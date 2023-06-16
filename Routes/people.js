@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { readData, readRowById, writeData, deleteRowById, updateRowById } = require('../networkCalls')
-const { networkDebugger } = require('../networkCalls')
+const { readData, readRowById, writeData, deleteRowById, updateRowById } = require('../networkCalls');
+const { networkDebugger } = require('../networkCalls');
+const { validatePerson } = require('../helper_functions/validate')
+
 
 router.get('/', async (req, res) => {
     const people = await readData();
