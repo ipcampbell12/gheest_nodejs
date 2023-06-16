@@ -60,6 +60,10 @@ router.delete('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
 
+        const { error } = validatePerson(req.body);
+
+        if (error) return res.status(400).send(error.details[0].message);
+
         const person = {
             id: req.params.id,
             fname: req.body.fname,
