@@ -186,6 +186,8 @@ module.exports = {
     readData: readData,
     readRowById: readRowById,
     writeData: writeData,
+    deleteRowById: deleteRowById,
+    updateRowById: updateRowById,
     networkDebugger: networkDebugger
 }
 

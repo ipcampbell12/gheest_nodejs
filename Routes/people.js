@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { readData, readRowById, writeData } = require('../networkCalls')
+const { readData, readRowById, writeData, deleteRowById, updateRowById } = require('../networkCalls')
 const { networkDebugger } = require('../networkCalls')
 
 router.get('/', async (req, res) => {
@@ -42,11 +42,23 @@ router.post('/', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-
+        const person = await deleteRowById(req.params.id)
+        res.send(person)
+        networkDebugger('The following person was removed: ', person)
     } catch (err) {
         networkDebugger(err)
     }
-})
+});
+
+router.put('/:id', async (req, res) => {
+    try {
+        const person = await updateRowById(req.params.id)
+        res.send(person)
+        networkDebugger('The following person was udpate: ', person)
+    } catch (err) {
+        networkDebugger(err)
+    }
+});
 
 // router.put('/:id', async (req, res) => {
 //     const person = 
