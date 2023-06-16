@@ -23,6 +23,11 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
+
+        const { error } = validatePerson(req.body);
+
+        if (error) return res.status(400).send(error.details[0].message);
+
         const people = await readData();
 
         const person = {
