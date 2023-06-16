@@ -52,7 +52,18 @@ router.delete('/:id', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     try {
-        const person = await updateRowById(req.params.id)
+
+        const person = {
+            id: req.params.id,
+            fname: req.body.fname,
+            lname: req.body.lname,
+            email: req.body.email,
+            phone: req.body.phone,
+        }
+
+        const personArr = Object.values(person)
+
+        await updateRowById([personArr], req.params.id)
         res.send(person)
         networkDebugger('The following person was udpate: ', person)
     } catch (err) {

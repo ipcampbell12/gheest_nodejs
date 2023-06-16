@@ -90,7 +90,8 @@ async function displayValue(id) {
 async function updateRowById(values, id) {
     const spreadsheetId = '12U2dYRDOGuEqURhvyOzzG9u-kuwkno3tVhoN7H_voAo';
     const valueInputOption = 'USER_ENTERED'
-    const range = `A${id + 1}:E${id + 1}`
+    const rowNumber = await getRowNumberById(id)
+    const range = `A${rowNumber}:E${rowNumber}`
     const resource = {
         values,
     };
