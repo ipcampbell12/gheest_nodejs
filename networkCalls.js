@@ -91,7 +91,7 @@ async function updateRowById(values, id) {
     const spreadsheetId = '12U2dYRDOGuEqURhvyOzzG9u-kuwkno3tVhoN7H_voAo';
     const valueInputOption = 'USER_ENTERED'
     const rowNumber = await getRowNumberById(id)
-    const range = `A${rowNumber}:E${rowNumber}`
+    const range = `A${rowNumber + 1}:E${rowNumber + 1}`
     const resource = {
         values,
     };
