@@ -12,13 +12,10 @@ async function readData() {
     const client = await getGoogleSheetsClient();
     const data = await readGoogleSheets(client, sheetId, tabName, range)
 
-    // console.log(data)
     return data
 
 }
-const updatedRow = [
-    [14, 'Jack', "Bojinga", "jbojinga@hellou.com", '111-222-1234']
-]
+
 
 async function writeData(data) {
 
@@ -26,14 +23,13 @@ async function writeData(data) {
     await appendToGoogleSheet(client, sheetId, tabName, range, data)
 }
 
-//writeData(updatedRow)
 
 async function readAndWrite() {
     await writeData()
     await readData()
 }
 
-//readAndWrite()
+
 
 async function getGoogleSheetsClient() {
     const auth = new google.auth.GoogleAuth({
@@ -76,16 +72,6 @@ async function getRowNumberById(id) {
     return rowNumber
 }
 
-async function displayValue(id) {
-    try {
-        const row = await readRowById(id)
-        networkDebugger(row)
-    } catch (error) {
-        networkDebugger(error)
-    }
-};
-
-//displayValue(54)
 
 async function updateRowById(values, id) {
     const spreadsheetId = '12U2dYRDOGuEqURhvyOzzG9u-kuwkno3tVhoN7H_voAo';
@@ -110,10 +96,6 @@ async function updateRowById(values, id) {
     }
 };
 
-
-
-
-//updateRowById(updatedRow, 585)
 
 async function deleteRowById(id) {
     const spreadsheetId = '12U2dYRDOGuEqURhvyOzzG9u-kuwkno3tVhoN7H_voAo';
@@ -154,12 +136,6 @@ async function deleteRowById(id) {
 };
 
 
-//deleteRowById(26)
-
-
-
-
-
 
 async function appendToGoogleSheet(googleSheetClient, sheetId, tabName, range, data) {
     await googleSheetClient.spreadsheets.values.append({
@@ -174,13 +150,6 @@ async function appendToGoogleSheet(googleSheetClient, sheetId, tabName, range, d
     })
 }
 
-
-const sum = (...args) => {
-    return args.reduce(function (acc, cur) {
-        return acc + cur
-    })
-
-}
 
 
 module.exports = {

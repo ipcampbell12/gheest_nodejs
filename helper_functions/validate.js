@@ -12,6 +12,15 @@ function validatePerson(person) {
     return schema.validate(person);
 }
 
+
+const sum = (...args) => {
+    return args.reduce(function (acc, cur) {
+        return acc + cur
+    })
+
+}
+
+
 module.exports = {
     validatePerson: validatePerson
 }
