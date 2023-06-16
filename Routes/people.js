@@ -40,6 +40,13 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.delete('/:id', async (req, res) => {
+    try {
+
+    } catch (err) {
+        networkDebugger(err)
+    }
+})
 
 // router.put('/:id', async (req, res) => {
 //     const person = 
