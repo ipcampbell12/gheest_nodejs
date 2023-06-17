@@ -31,11 +31,11 @@ router.post('/', async (req, res) => {
         const people = await readData();
 
         const person = {
-            id: people.length + 1,
-            fname: req.body.fname,
-            lname: req.body.lname,
-            email: req.body.email,
-            phone: req.body.phone,
+            id: people.length,
+            fname: req.body.title,
+            lname: req.body.author,
+            email: req.body.pages,
+            phone: req.body.summary,
         }
 
         const personArr = Object.values(person)
@@ -66,10 +66,10 @@ router.put('/:id', async (req, res) => {
 
         const person = {
             id: req.params.id,
-            fname: req.body.fname,
-            lname: req.body.lname,
-            email: req.body.email,
-            phone: req.body.phone,
+            fname: req.body.title,
+            lname: req.body.author,
+            email: req.body.pages,
+            phone: req.body.summary,
         }
 
         const personArr = Object.values(person)
