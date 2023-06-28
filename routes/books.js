@@ -4,7 +4,8 @@ const { readData, readRowById, writeData, deleteRowById, updateRowById } = requi
 const networkDebugger = require('debug')('app:networkCalls')
 const { validateBook } = require('../helper_functions/validate')
 const { getBook } = require('../googleBooks')
-const { shiftId } = require('../helper_functions/shiftId')
+const { update } = require('../helper_functions/shiftId')
+
 
 
 router.get('/', async (req, res) => {
@@ -39,8 +40,7 @@ router.post('/', async (req, res) => {
         const booksWithIds = booksFromGoogle
             .map(
                 (book, index) => ({ ...book, id: books.length + index }))
-            .map(book => Object.values(book))
-            .map(book => shiftId(book));
+            .map(book => update(book));
 
         writeData(booksWithIds);
         res.send(booksWithIds)
