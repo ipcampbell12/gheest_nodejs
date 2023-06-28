@@ -35,14 +35,13 @@ router.post('/', async (req, res) => {
 
         const booksFromGoogle = await getBook(req.body.title, req.body.quantity)
 
-        //console.log("The books from Gogole were: ", booksFromGoogle)
+        //console.log(booksFromGoogle)
 
-        const booksWithIds = await Promise.all(booksFromGoogle
+        const booksWithIds = booksFromGoogle
             .map(
                 (book, index) => ({ ...book, id: books.length + index }))
-            .map(book => update(book)));
+            .map(book => update(book));
 
-        //console.log(booksWithIds)
         writeData(booksWithIds);
         res.send(booksWithIds)
     } catch (err) {
