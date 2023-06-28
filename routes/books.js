@@ -28,21 +28,24 @@ router.post('/', async (req, res) => {
         const { error } = validateBook(req.body);
 
         if (error) return res.status(400).send(error.details[0].message);
-
+        //networkDebugger("We got this far")
         const books = await readData();
 
+        const bookFromGoogle = await getBook(req.body.title)
+
+        //console.log(bookFromGoogle)
+
         const book = {
-            id: books.length,
-            title: req.body.title,
-            author: req.body.author,
-            pages: req.body.pages,
-            summary: req.body.summary,
+            ...bookFromGoogle,
+            id: books.length
+
         }
 
-        networkDebugger('Here is the book: ', book)
-
         const bookArr = Object.values(book)
+        const val = bookArr.pop()
+        bookArr.unshift(val)
 
+        //console.log(bookArr)
         writeData([bookArr]);
         res.send(book)
     } catch (err) {

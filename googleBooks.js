@@ -12,15 +12,16 @@ const getBook = async (book) => {
         const firstFiveBooks = items.slice(0, 5)
         const bookInfo = firstFiveBooks.map(
             ({ volumeInfo: { title, authors, description, pageCount } }) => { return { title, authors, description, pageCount } }
-        )
-        console.log(bookInfo)
+        ).map(book => [book.title, book.authors[0], book.pageCount, book.description])
+        console.log(bookInfo[0])
+        return bookInfo[0]
     } catch (err) {
         console.error(err)
     }
 
 }
 
-module.exporst = {
+module.exports = {
     getBook: getBook
 }
 //getBook('To Kill a Mockingbird');

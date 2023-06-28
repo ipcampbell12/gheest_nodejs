@@ -3,10 +3,7 @@ const Joi = require('joi');
 
 function validateBook(person) {
     const schema = Joi.object({
-        title: Joi.string().min(4).required(),
-        author: Joi.string().min(4).required(),
-        pages: Joi.number(),
-        summary: Joi.string().min(12).required()
+        title: Joi.string().min(4).required()
     });
 
     return schema.validate(person);
