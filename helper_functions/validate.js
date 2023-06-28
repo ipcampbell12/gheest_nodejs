@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 
-function validatePerson(person) {
+function validateBook(person) {
     const schema = Joi.object({
         title: Joi.string().min(4).required(),
         author: Joi.string().min(4).required(),
@@ -22,5 +22,5 @@ const sum = (...args) => {
 
 
 module.exports = {
-    validatePerson: validatePerson
+    validateBook: validateBook
 }

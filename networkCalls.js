@@ -1,6 +1,4 @@
 const { google } = require('googleapis');
-const networkDebugger = require('debug')('app:networkCalls')
-
 const saKeyFile = "./gsheets-nodejs-389821-e05eab630dca.json";
 const sheetId = '12U2dYRDOGuEqURhvyOzzG9u-kuwkno3tVhoN7H_voAo';
 const tabName = 'Customers';
@@ -89,7 +87,7 @@ async function updateRowById(values, id) {
             valueInputOption,
             resource
         });
-        networkDebugger('%d cells updated.', result.data.updatedCells);
+        console.log('%d cells updated.', result.data.updatedCells);
         return result;
     } catch (err) {
         throw err;
@@ -102,7 +100,7 @@ async function deleteRowById(id) {
 
     const rowNumber = await getRowNumberById(id);
 
-    networkDebugger('Row Number: ', rowNumber);
+    console.log('Row Number: ', rowNumber);
 
     const batchUpdateRequest = {
 
@@ -157,8 +155,7 @@ module.exports = {
     readRowById: readRowById,
     writeData: writeData,
     deleteRowById: deleteRowById,
-    updateRowById: updateRowById,
-    networkDebugger: networkDebugger
+    updateRowById: updateRowById
 }
 
 
