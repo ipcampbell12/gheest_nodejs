@@ -5,11 +5,11 @@ async function update(arr) {
     const newArr = Object.values(arr)
     const val = newArr.pop()
     newArr.unshift(val)
-    const summary = await summarizeText(newArr[4])
+    const summary = await summarizeText(newArr[1])
     //console.log(summary)
-    const splicedArr = await newArr.toSpliced(4, 1, summary)
-    //console.log(splicedArr)
-    return splicedArr
+    const arrWithSum = newArr.append(summary)
+    console.log(arrWithSum)
+    //return arrWithSum
 };
 
 module.exports = {
