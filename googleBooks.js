@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const apiKey = 'AIzaSyAqGn7oUYS5vvxuRVPvuTSMvVzBRJBWDuk';
+const apiKey = require('./helper_functions/apiKey')
 
 const getBook = async (book, quantity) => {
     try {
