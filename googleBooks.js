@@ -20,5 +20,8 @@ const getBook = async (book) => {
 
 }
 
-getBook('To Kill a Mockingbird');
+module.exporst = {
+    getBook: getBook
+}
+//getBook('To Kill a Mockingbird');
 
