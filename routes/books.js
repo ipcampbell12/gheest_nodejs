@@ -4,6 +4,7 @@ const { readData, readRowById, writeData, deleteRowById, updateRowById } = requi
 const networkDebugger = require('debug')('app:networkCalls')
 const { validateBook } = require('../helper_functions/validate')
 const { getBook } = require('../googleBooks')
+const { shiftId } = require('../helper_functions/shiftId')
 
 
 router.get('/', async (req, res) => {
@@ -31,23 +32,18 @@ router.post('/', async (req, res) => {
         //networkDebugger("We got this far")
         const books = await readData();
 
-        const bookFromGoogle = await getBook(req.body.title)
+        const booksFromGoogle = await getBook(req.body.title, req.body.quantity)
 
-        //console.log(bookFromGoogle)
+        //console.log(booksFromGoogle)
 
-        const book = {
-            ...bookFromGoogle,
-            id: books.length
+        const booksWithIds = booksFromGoogle
+            .map(
+                (book, index) => ({ ...book, id: books.length + index }))
+            .map(book => Object.values(book))
+            .map(book => shiftId(book));
 
-        }
-
-        const bookArr = Object.values(book)
-        const val = bookArr.pop()
-        bookArr.unshift(val)
-
-        //console.log(bookArr)
-        writeData([bookArr]);
-        res.send(book)
+        writeData(booksWithIds);
+        res.send(booksWithIds)
     } catch (err) {
         networkDebugger(err)
     }

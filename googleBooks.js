@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const apiKey = 'AIzaSyAqGn7oUYS5vvxuRVPvuTSMvVzBRJBWDuk';
 
-const getBook = async (book) => {
+const getBook = async (book, quantity) => {
     try {
         const response = await axios.get(
             `https://www.googleapis.com/books/v1/volumes?q=intitle:${book}&${apiKey}`
@@ -13,8 +13,9 @@ const getBook = async (book) => {
         const bookInfo = firstFiveBooks.map(
             ({ volumeInfo: { title, authors, description, pageCount } }) => { return { title, authors, description, pageCount } }
         ).map(book => [book.title, book.authors[0], book.pageCount, book.description])
-        console.log(bookInfo[0])
-        return bookInfo[0]
+        const booksReturned = bookInfo.slice(0, quantity);
+        // console.log(booksReturned)
+        return booksReturned
     } catch (err) {
         console.error(err)
     }
@@ -24,5 +25,5 @@ const getBook = async (book) => {
 module.exports = {
     getBook: getBook
 }
-//getBook('To Kill a Mockingbird');
+//getBook('To Kill a Mockingbird', 2);
 
