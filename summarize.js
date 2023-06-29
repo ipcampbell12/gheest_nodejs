@@ -10,19 +10,24 @@ async function summarizeText(text) {
     const messages = [];
 
     const response = await cohere.generate({
-        modle: "large",
+        model: "xlarge",
+        length: "small",
         prompt: text,
         max_tokens: 100,
-        temperature: 0
+        temperature: 0.5,
+        format: "paragraph"
+
     });
 
-    const summary = response.body.generations
+    const summary = response.body.generations[0]['text']
     //console.log(summary)
     return summary
 
 }
 
 
-summarizeText(text)
+//summarizeText(text)
 
-module.exports = summarizeText;
+module.exports = {
+    summarizeText: summarizeText
+};

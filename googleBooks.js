@@ -11,8 +11,8 @@ const getBook = async (book, quantity) => {
         const { items } = response.data
         const initialBooks = items.slice(0, quantity)
         const booksReturned = initialBooks.map(
-            ({ volumeInfo: { title, authors, pageCount } }) => { return { title, authors, pageCount } }
-        ).map(book => [book.title, book.authors[0], book.pageCount])
+            ({ volumeInfo: { title, authors, pageCount, description } }) => { return { title, authors, pageCount, description } }
+        ).map(book => [book.title, book.authors[0], book.pageCount, book.description])
 
         // console.log(booksReturned)
         return booksReturned
