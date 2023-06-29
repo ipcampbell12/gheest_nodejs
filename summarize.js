@@ -7,8 +7,6 @@ async function summarizeText(text) {
     cohere.init(COHERE_API_KEY)
 
 
-    const messages = [];
-
     const response = await cohere.generate({
         model: "xlarge",
         length: "small",
