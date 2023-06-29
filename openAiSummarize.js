@@ -31,4 +31,8 @@ function openAiSummarize(text) {
 };
 
 
-openAiSummarize(textToCheck)
+//openAiSummarize(textToCheck);
+
+module.exports = {
+    textToCheck: textToCheck
+};

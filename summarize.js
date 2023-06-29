@@ -1,6 +1,9 @@
 const cohere = require("cohere-ai");
-const readlineSync = require("readline-sync");
-const { COHERE_API_KEY } = require('./helper_functions/config')
+const { textToCheck } = require('./openAiSummarize')
+const { COHERE_API_KEY } = require('./helper_functions/config');
+
+
+const bookTitle = 'To Kill a Mockingbird'
 
 async function summarizeText(text) {
 
@@ -9,7 +12,7 @@ async function summarizeText(text) {
 
     const response = await cohere.generate({
         model: "xlarge",
-        length: "small",
+        length: "medium",
         prompt: text,
         max_tokens: 100,
         temperature: 0.5,
@@ -18,13 +21,13 @@ async function summarizeText(text) {
     });
 
     const summary = response.body.generations[0]['text']
-    //console.log(summary)
+    console.log(summary)
     return summary
 
 }
 
 
-//summarizeText(text)
+summarizeText(bookTitle)
 
 module.exports = {
     summarizeText: summarizeText
