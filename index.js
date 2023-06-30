@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(morgan('tiny'));
 app.use('/api/books', books)
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
