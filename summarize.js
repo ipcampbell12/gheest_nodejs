@@ -21,13 +21,13 @@ async function summarizeText(text) {
     });
 
     const summary = response.body.generations[0]['text']
-    console.log(summary)
+    //console.log(summary)
     return summary
 
 }
 
 
-summarizeText(bookTitle)
+//summarizeText(bookTitle)
 
 module.exports = {
     summarizeText: summarizeText

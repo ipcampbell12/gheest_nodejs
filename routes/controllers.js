@@ -3,17 +3,17 @@ const { generateConfig } = require('./utilities');
 const nodemailer = require('nodemailer');
 const CONSTANTS = require('./constants');
 const { google } = require('googleapis');
-
+const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, REFRESH_TOKEN } = require('../helper_functions/config')
 
 require("dotenv").config();
 
 const OAuth2Client = new google.auth.OAuth2(
-    process.env.CLIENT_ID,
-    process.env.CLIENT_SECRET,
-    process.env.CLIENT_URI,
+    CLIENT_ID,
+    CLIENT_SECRET,
+    REDIRECT_URI
 );
 
-OAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
+OAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
 async function sendMail(req, res) {
     try {
@@ -32,12 +32,15 @@ async function sendMail(req, res) {
         };
 
         const result = await transport.sendMail(mailOptions);
-        res.send(result);
+        console.log(result)
+        // res.send(result);
     } catch (err) {
         console.log(err.message);
-        res.send(err)
+        // res.send(err)
     };
 };
 
 
-sendMail();
+module.exports = {
+    sendMail: sendMail
+}

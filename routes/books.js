@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
 
         const booksFromGoogle = await getBook(req.body.title, req.body.quantity)
 
-        //console.log(booksFromGoogle)
+        console.log(booksFromGoogle)
 
         const booksWithIds = await Promise.all(booksFromGoogle
             .map(
