@@ -133,6 +133,42 @@ async function deleteRowById(id) {
     }
 };
 
+async function deleteAllValues(rows) {
+    const spreadsheetId = '12U2dYRDOGuEqURhvyOzzG9u-kuwkno3tVhoN7H_voAo';
+
+    const batchUpdateRequest = {
+        requests: [
+            {
+                deleteDimension: {
+                    range: {
+                        sheetId: 0,
+                        dimension: "ROWS",
+                        startIndex: 0,
+                        endIndex: rows
+                    }
+                }
+            },
+        ],
+    }
+
+    const client = await getGoogleSheetsClient();
+
+    try {
+        const result = await client.spreadsheets.batchUpdate({
+            spreadsheetId,
+            resource: batchUpdateRequest,
+        });
+
+        await result.data.replies[0].deleteDimensions;
+
+        return result;
+    } catch (err) {
+        throw err;
+    }
+}
+
+
+
 
 
 async function appendToGoogleSheet(googleSheetClient, sheetId, tabName, range, data) {

@@ -4,7 +4,8 @@ const { readData, readRowById, writeData, deleteRowById, updateRowById } = requi
 const networkDebugger = require('debug')('app:networkCalls')
 const { validateBook } = require('../helper_functions/validate')
 const { getBook } = require('../googleBooks')
-const { update } = require('../helper_functions/shiftId')
+const { update } = require('../helper_functions/shiftId');
+const { sendMail } = require('./controllers')
 
 
 
@@ -43,6 +44,14 @@ router.post('/', async (req, res) => {
             .map(book => update(book)));
 
         writeData(booksWithIds);
+        //console.log({ title: booksWithIds[0][1], summary: booksWithIds[0][4] })
+        sendMail("A new book has been added",
+            `Title: 
+            ${booksWithIds[0][1]}, 
+            
+            Summary: 
+            ${booksWithIds[0][4]}`)
+
         res.send(booksWithIds)
     } catch (err) {
         networkDebugger(err)
