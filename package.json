@@ -14,10 +14,12 @@
     "cohere-ai": "^6.2.2",
     "cors": "^2.8.5",
     "debug": "^4.3.4",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "googleapis": "^95.0.0",
     "joi": "^17.9.2",
     "morgan": "^1.10.0",
+    "nodemailer": "^6.9.3",
     "nodemon": "^2.0.22",
     "openai": "^3.3.0",
     "readline-sync": "^1.4.10"
