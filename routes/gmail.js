@@ -1,15 +1,21 @@
 const express = require('express');
-const controllers = require('./controllers')
+const { sendMail } = require('./controllers')
 const router = express.Router();
 
 require("dotenv").config();
 
-router.get("/", async (req, res) => {
-    res.send("welcome to Gmail API with NodeJS")
-});
 
+router.get('/mail/send', async (req, res) => {
 
-router.get('/mail/send', controllers.sendMail)
+    try {
+        const gmail = await sendMail(req.subject, req.message);
+        console.log(gmail)
+        res.send(gmail)
+    } catch (err) {
+        console.log(err.message)
+    }
+
+})
 
 
 module.exports = router;

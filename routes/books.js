@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const book = await readRowById(req.params.id)
-        networkDebugger('Book retrieved: ', book)
+        console.log('Book retrieved: ', book)
         res.send(book);
     } catch (err) {
         networkDebugger(err)

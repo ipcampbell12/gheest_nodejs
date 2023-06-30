@@ -15,7 +15,7 @@ const OAuth2Client = new google.auth.OAuth2(
 
 OAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
-async function sendMail(req, res) {
+async function sendMail(subject, message) {
     try {
         const accessToken = await OAuth2Client.getAccessToken();
         const transport = nodemailer.createTransport({
@@ -27,16 +27,17 @@ async function sendMail(req, res) {
         });
 
         const mailOptions = {
-            ...CONSTANTS.mailoptions,
-            text: "The Gmail API with NodeJS worked!"
+            from: "Ian, <ipcampbell12@gmail.com>",
+            to: "ipcampbell12@gmail.com>",
+            subject: subject,
+            text: message
         };
 
         const result = await transport.sendMail(mailOptions);
-        console.log(result)
-        // res.send(result);
+        return result;
     } catch (err) {
         console.log(err.message);
-        // res.send(err)
+
     };
 };
 
