@@ -1,6 +1,7 @@
 const axios = require('axios');
 const { generateConfig } = require('./utilities');
 const nodemailer = require('nodemailer');
+const MailComposer = require('nodemailer/lib/mail-composer');
 const CONSTANTS = require('./constants');
 const { google } = require('googleapis');
 const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, REFRESH_TOKEN } = require('../helper_functions/config')
@@ -25,6 +26,8 @@ async function sendMail(subject, message) {
                 accessToken: accessToken
             },
         });
+
+
 
         const mailOptions = {
             from: "Ian, <ipcampbell12@gmail.com>",

@@ -5,10 +5,11 @@ const router = express.Router();
 require("dotenv").config();
 
 
-router.get('/mail/send', async (req, res) => {
+router.post('/mail/send', async (req, res) => {
 
     try {
-        const gmail = await sendMail(req.subject, req.message);
+
+        const gmail = await sendMail(req.body.subject, req.body.message);
         console.log(gmail)
         res.send(gmail)
     } catch (err) {
