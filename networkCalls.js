@@ -2,7 +2,7 @@ const { google } = require('googleapis');
 const saKeyFile = "./gsheets-nodejs-389821-e05eab630dca.json";
 const sheetId = '12U2dYRDOGuEqURhvyOzzG9u-kuwkno3tVhoN7H_voAo';
 const tabName = 'Customers';
-const range = 'A1:E';
+const range = 'A1:F';
 
 
 
@@ -143,7 +143,7 @@ async function deleteAllValues(rows) {
                     range: {
                         sheetId: 0,
                         dimension: "ROWS",
-                        startIndex: 0,
+                        startIndex: 1,
                         endIndex: rows
                     }
                 }
@@ -168,7 +168,7 @@ async function deleteAllValues(rows) {
 }
 
 
-
+deleteAllValues(5)
 
 
 async function appendToGoogleSheet(googleSheetClient, sheetId, tabName, range, data) {
@@ -191,7 +191,8 @@ module.exports = {
     readRowById: readRowById,
     writeData: writeData,
     deleteRowById: deleteRowById,
-    updateRowById: updateRowById
+    updateRowById: updateRowById,
+    deleteAllValues: deleteAllValues
 }
 
 

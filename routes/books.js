@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { readData, readRowById, writeData, deleteRowById, updateRowById } = require('../networkCalls');
+const { readData, readRowById, writeData, deleteRowById, updateRowById, deleteAllValues } = require('../networkCalls');
 const networkDebugger = require('debug')('app:networkCalls')
 const { validateBook } = require('../helper_functions/validate')
 const { getBook } = require('../googleBooks')
@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
 
         const booksFromGoogle = await getBook(req.body.title, req.body.quantity)
 
-        console.log(booksFromGoogle)
+        //console.log(booksFromGoogle)
 
         const booksWithIds = await Promise.all(booksFromGoogle
             .map(
@@ -67,6 +67,13 @@ router.delete('/:id', async (req, res) => {
         networkDebugger(err)
     }
 });
+
+router.delete('/', async (req, res) => {
+    const books = await readData();
+    const num = await books.length
+    const result = await deleteAllValues(num);
+    res.send(result);
+})
 
 router.put('/:id', async (req, res) => {
     try {
