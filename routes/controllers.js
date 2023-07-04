@@ -31,10 +31,12 @@ async function sendMail(subject, message) {
 
         const mailOptions = {
             from: "Ian, <ipcampbell12@gmail.com>",
-            to: "ipcampbell12@gmail.com>",
+            to: "ipropstcampb07@georgefox.edu",
             subject: subject,
             text: message
         };
+
+        console.log(mailOptions)
 
         const result = await transport.sendMail(mailOptions);
         return result;

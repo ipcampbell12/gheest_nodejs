@@ -11,6 +11,7 @@ function openAiSummarize(text) {
     ${text}`;
 
     const configuration = new Configuration({
+        organization: 'org-gYcGarOGtv0j5MVh6vftmayf',
         apiKey: OPENAI_API_KEY
     });
 
@@ -26,12 +27,12 @@ function openAiSummarize(text) {
             console.log(res.data.choices[0].message.content)
         })
         .catch((err) => {
-            console.error(err)
+            console.error(err.message)
         });
 };
 
 
-//openAiSummarize(textToCheck);
+openAiSummarize(textToCheck);
 
 module.exports = {
     textToCheck: textToCheck

@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
 
         writeData(booksWithIds);
         //console.log({ title: booksWithIds[0][1], summary: booksWithIds[0][4] })
-        sendMail("A new book has been added",
+        sendMail("You've added another book",
             `Title: 
             ${booksWithIds[0][1]}, 
             
